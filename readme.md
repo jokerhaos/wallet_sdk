@@ -46,7 +46,7 @@
         const tx1 = APPNFT.sendMethod('transfer',0,0,'0x',100)
 
         // 获取元币余额
-        const balanceOf2 = walletObj.
+        const balanceOf2 = walletObj.balanceOf('0x')
         
 ```
 ```
