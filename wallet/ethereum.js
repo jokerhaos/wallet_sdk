@@ -181,20 +181,11 @@ const ethClass = class Eth {
   }
 
   /**
-   * 合并太空碎片
-   * @param {*} tokenIds array
-   * @param {*} callValue int 应该是 钛合金数量*合成单价
+   * call扩展函数
+   * @param {*} funName 方法名
+   * @param  {...any} arg 
+   * @returns {*}
    */
-  async combine(tokenIds, callValue) {
-    return await this.sendMethod('combine', 0, callValue, tokenIds)
-  }
-
-  // 设置太空舱合约地址
-  async setSCAddr(addr) {
-    return await this.sendMethod('setSCAddr', 4e8, 0, addr)
-  }
-
-  // call扩展函数
   async callMethod(funName, ...arg) {
     const my_wallet_address = await this.getWalletAddress()
     if (version === 0.2) {
@@ -219,12 +210,19 @@ const ethClass = class Eth {
     }
   }
 
-  // send扩展函数
-  async sendMethod(funName, feeLimit, callValue, ...arg) {
+  /**
+   * 获取估值
+   * @param {*} funName 方法名
+   * @param {*} callValue 支付元币
+   * @param  {...any} arg 参数
+   * @return int
+   */
+  async estimateGas(funName, callValue, ...arg) {
     const my_wallet_address = await this.getWalletAddress()
+    var gas;
     if (version === 0.2) {
       // 0.2版本
-      let gas = await new Promise((resolve, reject) => {
+      gas = await new Promise((resolve, reject) => {
         this.contract[funName].estimateGas(
           ...arg,
           {
@@ -232,7 +230,7 @@ const ethClass = class Eth {
             value: callValue
           }, function (error, gas) {
             if (!error) {
-              resolve(gas * 2)
+              resolve(gas)
             } else {
               // Bianca测试链估值会有问题
               resolve(feeLimit || 3e6)
@@ -240,11 +238,33 @@ const ethClass = class Eth {
             }
           })
       })
-      // 防止估计有误
-      feeLimit = feeLimit > 3e6 ? 3e6 : feeLimit
-      gas = (gas + 1000) > 3e6 ? 3e6 : gas + 1000
-      gas = gas < feeLimit ? feeLimit : gas
-      console.log(gas)
+    } else {
+      // 1.6版本
+      gas = (await this.contract.methods[funName](...arg).estimateGas({
+        from: my_wallet_address,
+        value: callValue
+      }).catch((err) => {
+        console.log(err)
+      })) || 3e6
+    }
+    // 防止估计过少
+    return (gas + 1000) > 3e6 ? 3e6 : gas + 1000
+  }
+
+  /**
+   * send扩展函数
+   * @param {*} funName 方法名
+   * @param {*} feeLimit gas限额,false自动估值
+   * @param {*} callValue 消耗元币
+   * @param  {...any} arg 多个参数 a,b,c,d....
+   * @returns tx 交易单号
+   */
+  async sendMethod(funName, feeLimit, callValue, ...arg) {
+    const my_wallet_address = await this.getWalletAddress()
+    const gas = !feeLimit ? await estimateGas(funName, callValue, ...arg) : feeLimit
+    console.log(gas)
+    if (version === 0.2) {
+      // 0.2版本
       return await new Promise((resolve, reject) => {
         this.contract[funName](
           ...arg,
@@ -262,17 +282,6 @@ const ethClass = class Eth {
       })
     } else {
       // 1.6版本
-      let gas = (await this.contract.methods[funName](...arg).estimateGas({
-        from: my_wallet_address,
-        value: callValue
-      }).catch((err) => {
-        console.log(err)
-      }) || 3e6)
-      // 防止估计有误
-      feeLimit = feeLimit > 3e6 ? 3e6 : feeLimit
-      gas = (gas + 1000) > 3e6 ? 3e6 : gas + 1000
-      gas = gas < feeLimit ? feeLimit : gas
-      console.log(gas)
       const tx = await this.contract.methods[funName](...arg).send({
         gas: gas,
         from: my_wallet_address,

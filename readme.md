@@ -25,8 +25,23 @@
         // 例如查看地址余额
         const result = APPNFT.callMethod('balanceOf','0x')
 
-        // 消耗gas funName, feeLimit, callValue, ...arg
-        const tx1 = APPNFT.sendMethod(方法名,gasLimit,支付元币,参数)
+        /**
+        * 获取估值
+        * @param {*} funName 方法名
+        * @param {*} callValue 支付元币
+        * @param  {...any} arg 参数
+        * @return int
+        */
+        const feeLimit = APPNFT.estimateGas('transfer',0,'0x',100);
+
+        /**
+        * send扩展函数
+        * @param {*} funName 方法名
+        * @param {*} feeLimit gas限额,false或者0自动估值
+        * @param {*} callValue 消耗元币
+        * @param  {...any} arg 多个参数 a,b,c,d....
+        * @returns tx 交易单号
+        */
         // 例如转账
         const tx1 = APPNFT.sendMethod('transfer',0,0,'0x',100)
 

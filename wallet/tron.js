@@ -116,16 +116,37 @@ const tronClass = class Tron {
     return await this.sendMethod('setSCAddr', 4e8, 0, addr)
   }
 
+  /**
+   * 获取估值
+   * @param {*} funName 方法名
+   * @param {*} callValue 支付元币
+   * @param  {...any} arg 参数
+   * @return int
+   */
+   async estimateGas(funName, callValue, ...arg) {
+    // 最大的来吧~
+    return 4e8
+  }
+
   // call扩展函数
   async callMethod(funName, ...arg) {
     return await this.contract[funName](...arg).call({})
   }
 
-  // send扩展函数
+  /**
+   * send扩展函数
+   * @param {*} funName 方法名
+   * @param {*} feeLimit gas限额,false自动估值
+   * @param {*} callValue 消耗元币
+   * @param  {...any} arg 多个参数 a,b,c,d....
+   * @returns tx 交易单号
+   */
   async sendMethod(funName, feeLimit, callValue, ...arg) {
+    const gas = !feeLimit ? await estimateGas(funName, callValue, ...arg) : feeLimit
+    console.log(gas)
     return await this.contract[funName](...arg).send(
       {
-        feeLimit: feeLimit,
+        feeLimit: gas,
         callValue: callValue,
         shouldPollResponse: false
       })
