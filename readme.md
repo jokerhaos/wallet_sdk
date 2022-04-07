@@ -12,7 +12,7 @@
         // 加载合约
         const APENFT = await walletObj.newContract('apenft')
         // 或者使用
-        const APENFT = await walletObj.myContract('apenft')
+        const APENFT = await walletObj.getContract('apenft')
 
         // 转账
         const tx = APPNFT.transfer('0x',100)
@@ -57,6 +57,6 @@
         2. config/abiList.json 新增一条数据
         3. config/contractAddress.json 写入合约地址
         4. 你也可以写一个自己的contract.js 写到contract/链 然后继承tron.js or ethereum.js
-        5. 写自己的contract.js则使用 “myContract()” 对应的合约对象 
+        5. 写自己的contract.js则使用 “getContract()” 对应的合约对象 
 
 ```
