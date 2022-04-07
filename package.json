@@ -1,0 +1,22 @@
+{
+  "name": "block_chainwallet_sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokerhaos/wallet_sdk.git"
+  },
+  "author": "joker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jokerhaos/wallet_sdk/issues"
+  },
+  "homepage": "https://github.com/jokerhaos/wallet_sdk#readme",
+  "dependencies": {
+    "web3": "^1.7.1"
+  }
+}

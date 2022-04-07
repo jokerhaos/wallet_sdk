@@ -1,0 +1,835 @@
+[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "CORE_ADDRESS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "father_token_id",
+        "type": "uint256"
+      },
+      {
+        "name": "mother_token_id",
+        "type": "uint256"
+      },
+      {
+        "name": "win_price",
+        "type": "uint256"
+      },
+      {
+        "name": "nft_price",
+        "type": "uint256"
+      },
+      {
+        "name": "child_genes",
+        "type": "uint256"
+      },
+      {
+        "name": "nonce",
+        "type": "uint256"
+      },
+      {
+        "name": "_signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "StartBreed",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "max_breed_count",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "withdraw_WIN",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "horse_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "getBreedCount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "SET_COLDDOWN_TIME",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "parent_id",
+        "type": "uint256"
+      },
+      {
+        "name": "child_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "addChild",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "win_price",
+        "type": "uint256"
+      },
+      {
+        "name": "nft_price",
+        "type": "uint256"
+      }
+    ],
+    "name": "cost",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "unpause",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "paused",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "win",
+        "type": "address"
+      }
+    ],
+    "name": "SET_TOKEN_WIN_ADDRESS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "SET_MAX_BREED_COUNT",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "TOKEN_WIN_ADDRESS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "empty_address",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "pause",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "horse_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "canBreed",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "value",
+        "type": "address"
+      }
+    ],
+    "name": "changeSignaturer",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_ethSignedMessageHash",
+        "type": "bytes32"
+      },
+      {
+        "name": "_signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "recoverSigner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "sig",
+        "type": "bytes"
+      }
+    ],
+    "name": "splitSignature",
+    "outputs": [
+      {
+        "name": "r",
+        "type": "bytes32"
+      },
+      {
+        "name": "s",
+        "type": "bytes32"
+      },
+      {
+        "name": "v",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "balanceOf_WIN",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "TOKEN_NFT_ADDRESS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "nft",
+        "type": "address"
+      }
+    ],
+    "name": "SET_TOKEN_NFT_ADDRESS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "signaturer",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "balanceOf_APENFT",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "core",
+        "type": "address"
+      }
+    ],
+    "name": "SET_CORE_ADDRESS",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "parents_map",
+    "outputs": [
+      {
+        "name": "father",
+        "type": "uint256"
+      },
+      {
+        "name": "mother",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "approve_APENFT",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "name": "father_token_id",
+        "type": "uint256"
+      },
+      {
+        "name": "mother_token_id",
+        "type": "uint256"
+      },
+      {
+        "name": "win_price",
+        "type": "uint256"
+      },
+      {
+        "name": "nft_price",
+        "type": "uint256"
+      },
+      {
+        "name": "child_genes",
+        "type": "uint256"
+      },
+      {
+        "name": "_nonce",
+        "type": "uint256"
+      },
+      {
+        "name": "signature",
+        "type": "bytes"
+      }
+    ],
+    "name": "verify",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "withdraw_APENFT",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "contract_address",
+        "type": "address"
+      },
+      {
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "name": "father_token_id",
+        "type": "uint256"
+      },
+      {
+        "name": "mother_token_id",
+        "type": "uint256"
+      },
+      {
+        "name": "win_price",
+        "type": "uint256"
+      },
+      {
+        "name": "nft_price",
+        "type": "uint256"
+      },
+      {
+        "name": "child_genes",
+        "type": "uint256"
+      },
+      {
+        "name": "_nonce",
+        "type": "uint256"
+      }
+    ],
+    "name": "getMessageHash",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "children_map",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_messageHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getEthSignedMessageHash",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "colddown_time",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "win_address",
+        "type": "address"
+      },
+      {
+        "name": "nft_address",
+        "type": "address"
+      },
+      {
+        "name": "core_address",
+        "type": "address"
+      },
+      {
+        "name": "colddowntime",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "breeder",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "father",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "mother",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "axie_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "child_genes",
+        "type": "uint256"
+      }
+    ],
+    "name": "Breed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "breeder",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "father",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "mother",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "father_breed_count",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "mother_breed_count",
+        "type": "uint256"
+      }
+    ],
+    "name": "ParentCount",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "breeader",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "win_cost",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "nft_cost",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "axie_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "BreedCost",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Pause",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [],
+    "name": "Unpause",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  }
+]
