@@ -2,8 +2,8 @@
 
     使用扩展，项目需要两个env变量
 
-        MY_ENV = '环境' //dev or prod
-        VUE_APP_BLOCKCHAIN='' // tron or ethereum or binance
+        WALLET_ENV = '环境' //默认dev dev or prod
+        VUE_APP_BLOCKCHAIN='' //默认tron tron or ethereum or binance
 
         // 扩展会根据环境变量自动调用对应环境的钱包
 
