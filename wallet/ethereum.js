@@ -113,17 +113,6 @@ const ethClass = class Eth {
     return this
   }
 
-  // 获取合约
-  async getContract() {
-    if (version === 0.2) {
-      // 0.2版本
-      return web3.eth.contract(this.abi).at(this.address)
-    } else {
-      // 1.6版本
-      return await new web3.eth.Contract(this.abi, this.address)
-    }
-  }
-
   // 钱包是否已经链接
   async isWalletConnected() {
     return !!ethereum

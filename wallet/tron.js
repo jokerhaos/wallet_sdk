@@ -44,11 +44,6 @@ const tronClass = class Tron {
     return this
   }
 
-  // 获取合约
-  async getContract() {
-    return await tronweb.contract().at(this.address)
-  }
-
   // 钱包是否已经链接
   async isWalletConnected() {
     if (!tronweb) { return false }

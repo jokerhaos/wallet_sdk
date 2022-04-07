@@ -8,9 +8,9 @@ const contractObj = require("./config/contractAddress.json")[wallet_env][block_c
 const abiList = require("./config/abiList.json");
 
 class Js_SDK {
+
   constructor(block_chain, contractObj) {
     this.block_chain = block_chain
-    // eslint-disable-next-line new-cap
     this.wallet = new (require(`./wallet/${block_chain}.js`).default)()
     this.contractObj = contractObj
     this.defaultGas = this.wallet.defaultGas
@@ -23,8 +23,10 @@ class Js_SDK {
    */
   async newContract(name) {
     try {
-      const wallet = new (await require(`./wallet/${this.block_chain}.js`).default)()
-      return await wallet.setContract(name, this.contractObj[name], require(abiList[name]))
+      // require('./wallet/tron');
+      let abi = await require(`${abiList[name]}`)
+      const wallet = new (await require(`./wallet/${block_chain}.js`).default)()
+      return await wallet.setContract(name, contractObj[name], abi)
     } catch (error) {
       console.log(error)
       return error
@@ -36,10 +38,12 @@ class Js_SDK {
    * @param {*} name
    * @returns {this} 返回一个新的合约对象
    */
-  async myContract(name) {
+  async getContract(name) {
     try {
-      const wallet = new (await require(`./contract/${this.block_chain}/${name}.js`).default)()
-      return await wallet.setContract(name, this.contractObj[name], require(abiList[name]))
+      let abi = await require(`${abiList[name]}`)
+      require(`./contract/ethereum/apenft.js`)
+      const wallet = new (await require(`./contract/${block_chain}/${name}.js`).default)()
+      return await wallet.setContract(name, contractObj[name], abi)
     } catch (error) {
       console.log(error)
       return error
@@ -47,19 +51,10 @@ class Js_SDK {
   }
 
   /**
-   * 获取合约
-   * @param {*} name
-   * @returns {object} web3合约对象
-   */
-  async getContract(name) {
-    return await this.wallet.getContract(name)
-  }
-
-  /**
    * 钱包是否已经链接
    * @returns {bool}
    */
-   async isWalletConnected() {
+  async isWalletConnected() {
     return await this.wallet.isWalletConnected()
   }
 
@@ -76,7 +71,7 @@ class Js_SDK {
    * @param {*} address
    * @returns {uint}
    */
-   async balanceOf(address) {
+  async balanceOf(address) {
     return await this.wallet.balanceOf(address)
   }
 
