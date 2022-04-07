@@ -1,12 +1,12 @@
 {
-    "box": "../abi/box.json",
-    "apenft": "../abi/apenft.json",
-    "win": "../abi/win.json",
-    "core": "../abi/core.json",
-    "market": "../abi/market.json",
-    "changename": "../abi/changename.json",
-    "breed": "../abi/breed.json",
-    "BNFT": "../abi/BNFT.json",
-    "BNFT_EC": "../abi/BNFT_EC.json",
-    "hos": "../abi/hos.json"
-  }
+  "box": "./abi/box.json",
+  "apenft": "./abi/apenft.json",
+  "win": "./abi/win.json",
+  "core": "./abi/core.json",
+  "market": "./abi/market.json",
+  "changename": "./abi/changename.json",
+  "breed": "./abi/breed.json",
+  "BNFT": "./abi/BNFT.json",
+  "BNFT_EC": "./abi/BNFT_EC.json",
+  "hos": "./abi/hos.json"
+}
