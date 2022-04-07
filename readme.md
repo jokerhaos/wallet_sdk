@@ -1,10 +1,13 @@
 ```
 
     使用扩展你项目需要两个env变量
-    
-        MY_ENV = '环境' //dev or prod
 
+        MY_ENV = '环境' //dev or prod
         VUE_APP_BLOCKCHAIN='' // tron or ethereum or binance
+
+        
+
+
 
     新增新合约
 
