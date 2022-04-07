@@ -1,3 +1,4 @@
+const { sleep } = require("../utils/MyUtils")
 const Web3 = require('web3')
 // const detectEthereumProvider = require('@metamask/detect-provider');
 // var ethereum = '';
@@ -88,6 +89,15 @@ const ethClass = class Eth {
 
   // 设置合约
   async setContract(name, address, abi) {
+    console.log('name', name)
+    console.log('address', address)
+    if (!web3) {
+      console.log('……')
+      // 等待3s重新递归
+      await sleep(3)
+      return await this.setContract(name, address, abiList)
+    }
+
     this.name = name
     this.address = address
     this.abi = abi

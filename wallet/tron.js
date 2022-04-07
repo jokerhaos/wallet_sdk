@@ -1,5 +1,7 @@
 // var tronweb = require("tronweb");
+const { sleep } = require("../utils/MyUtils")
 var tronweb = window.tronWeb
+
 const t = setInterval(() => {
   if (tronweb == null || typeof tronweb === undefined) {
     console.log('please install tronlink')
@@ -8,14 +10,6 @@ const t = setInterval(() => {
   tronweb = window.tronWeb
   clearInterval(t)
 }, 1000);
-
-async function sleep(s) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve()
-    }, s * 1000)
-  })
-}
 
 const tronClass = class Tron {
   constructor() {

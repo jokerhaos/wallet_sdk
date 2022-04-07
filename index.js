@@ -11,7 +11,7 @@ class Js_SDK {
   constructor(block_chain, contractObj) {
     this.block_chain = block_chain
     // eslint-disable-next-line new-cap
-    this.wallet = new (require(`@/js_sdk/wallet/${block_chain}.js`).default)()
+    this.wallet = new (require(`./wallet/${block_chain}.js`).default)()
     this.contractObj = contractObj
     this.defaultGas = this.wallet.defaultGas
   }
@@ -23,7 +23,7 @@ class Js_SDK {
    */
   async newContract(name) {
     try {
-      const wallet = new (await require(`@/js_sdk/wallet/${this.block_chain}.js`).default)()
+      const wallet = new (await require(`./wallet/${this.block_chain}.js`).default)()
       return await wallet.setContract(name, this.contractObj[name], require(abiList[name]))
     } catch (error) {
       console.log(error)
@@ -32,12 +32,52 @@ class Js_SDK {
   }
 
   /**
-     * 获取合约
-     * @param {*} name
-     * @returns {object} web3合约对象
-     */
+   * 调用自己的contract合约对象
+   * @param {*} name
+   * @returns {this} 返回一个新的合约对象
+   */
+  async myContract(name) {
+    try {
+      const wallet = new (await require(`./contract/${this.block_chain}/${name}.js`).default)()
+      return await wallet.setContract(name, this.contractObj[name], require(abiList[name]))
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+  }
+
+  /**
+   * 获取合约
+   * @param {*} name
+   * @returns {object} web3合约对象
+   */
   async getContract(name) {
     return await this.wallet.getContract(name)
+  }
+
+  /**
+   * 钱包是否已经链接
+   * @returns {bool}
+   */
+   async isWalletConnected() {
+    return await this.wallet.isWalletConnected()
+  }
+
+  /**
+   * 获取当前钱包地址
+   * @returns
+   */
+  async getWalletAddress() {
+    return await this.wallet.getWalletAddress()
+  }
+
+  /**
+   * 获取某个地址的元币balance
+   * @param {*} address
+   * @returns {uint}
+   */
+   async balanceOf(address) {
+    return await this.wallet.balanceOf(address)
   }
 
 }
