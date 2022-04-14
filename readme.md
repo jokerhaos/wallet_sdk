@@ -49,6 +49,29 @@
         const balanceOf2 = walletObj.balanceOf('0x')
         
 ```
+
+```
+    开发者采用自己的abi和合约继承
+
+        walletObj.setConfig({
+            box: "@/abi/box.json",
+        }, {
+            dev: {
+                tron: { box: 'xxx },
+                ethereum: { box: 'xxx },
+                binance: { box: 'xxx }
+            },
+            prod: {
+                tron: { box: 'xxx },
+                ethereum: { box: 'xxx },
+                binance: { box: 'xxx }
+            }
+        }, '@/contract')
+
+        1.采用自己的配置，需要先执行setConfig
+        2.然后就可以调用合约方法了~
+```
+
 ```
 
     开发者新增新合约
