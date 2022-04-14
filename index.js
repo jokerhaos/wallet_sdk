@@ -13,7 +13,22 @@ class Js_SDK {
     this.block_chain = block_chain
     this.wallet = new (require(`./wallet/${block_chain}.js`).default)()
     this.contractObj = contractObj
+    this.abiList = abiList
     this.defaultGas = this.wallet.defaultGas
+    this.contractPath = './contract'
+  }
+
+  /**
+   * 设置abiList and contractAddress and contractPath
+   * @param {*} abiList 配置查看./config/abiList.json
+   * @param {*} contractAddress 配置查看./config/contractAddress.json
+   * @param {*} contractPath contract目录地址 default ./contract，设置自己的目录遵循三个链的子目录，文件命名为abiList的key
+   * @returns {this}
+   */
+  async setConfig(abiList, contractAddress, contractPath) {
+    this.abiList = abiList
+    this.contractAddress = contractAddress[wallet_env][block_chain]
+    this.contractPath = contractPath
   }
 
   /**
@@ -24,9 +39,9 @@ class Js_SDK {
   async newContract(name) {
     try {
       // require('./wallet/tron');
-      let abi = await require(`${abiList[name]}`)
+      let abi = await require(`${this.abiList[name]}`)
       const wallet = new (await require(`./wallet/${block_chain}.js`).default)()
-      return await wallet.setContract(name, contractObj[name], abi)
+      return await wallet.setContract(name, this.contractObj[name], abi)
     } catch (error) {
       console.log(error)
       return error
@@ -40,10 +55,10 @@ class Js_SDK {
    */
   async getContract(name) {
     try {
-      let abi = await require(`${abiList[name]}`)
+      let abi = await require(`${this.abiList[name]}`)
       require(`./contract/ethereum/apenft.js`)
-      const wallet = new (await require(`./contract/${block_chain}/${name}.js`).default)()
-      return await wallet.setContract(name, contractObj[name], abi)
+      const wallet = new (await require(`${this.contractPath}/${block_chain}/${name}.js`).default)()
+      return await wallet.setContract(name, this.contractObj[name], abi)
     } catch (error) {
       console.log(error)
       return error
