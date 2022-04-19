@@ -1,7 +1,7 @@
 // 链
 const block_chain = process.env.VUE_APP_BLOCKCHAIN || 'tron';
 // 环境
-const wallet_env = process.env.WALLET_ENV || 'dev';
+const wallet_env = process.env.VUE_APP_WALLET_ENV || 'dev';
 // 合约地址
 const contractObj = require("./config/contractAddress.json")[wallet_env][block_chain]
 // abi
