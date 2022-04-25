@@ -8,7 +8,8 @@
 
         import walletObj from 'j_wallet_sdk'
 
-    contract abi config 这三个文件放在项目根目录，三个文件可以去 https://github.com/jokerhaos/wallet_sdk 获取
+    contract、abi、config 目录请配置在根目录/src
+    三个文件可以去 https://github.com/jokerhaos/wallet_sdk 获取
 
 ```
 
