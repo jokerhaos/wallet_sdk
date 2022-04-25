@@ -95,7 +95,7 @@ const ethClass = class Eth {
       console.log('……')
       // 等待3s重新递归
       await sleep(3)
-      return await this.setContract(name, address, abiList)
+      return await this.setContract(name, address, abi)
     }
 
     this.name = name
