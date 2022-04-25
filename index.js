@@ -6,7 +6,7 @@ const root_path = path.join(__dirname, 'src')
 const block_chain = process.env.VUE_APP_BLOCKCHAIN || 'tron';
 // 合约地址
 const contractObj = require(`/src/config/contractAddress.js`)[block_chain]
-console.log(contractObj)
+
 class Js_SDK {
 
   constructor() {
@@ -67,11 +67,11 @@ class Js_SDK {
       let contractAddress = contractObj[name];
       // 获取代理合约地址
       if (proxy) {
-        if (contractObj.hasOwnProperty('proxy') === false) {
+        if (contractObj.hasOwnProperty(proxy) === false) {
           alert(`代理合约地址未设置`)
           return
         }
-        contractAddress = contractObj['proxy']
+        contractAddress = contractObj[proxy]
       }
       let abi = await require(`/src/abi/${name}.json`)
       if (abi === undefined) {
