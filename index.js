@@ -1,10 +1,11 @@
-const path = require('path');
+const path = require('path')
+const { sleep } = require("./utils/MyUtils")
 // 项目根目录
-const root_path = path.dirname(require.main.filename);
+const root_path = path.join(__dirname, 'src')
 // 链
 const block_chain = process.env.VUE_APP_BLOCKCHAIN || 'tron';
 // 合约地址
-const contractObj = require(`${root_path}/config/contractAddress.json`)[block_chain]
+const contractObj = require(`/src/config/contractAddress.json`)[block_chain]
 
 class Js_SDK {
 
@@ -22,6 +23,7 @@ class Js_SDK {
    */
   async newContract(name, proxy = false) {
     try {
+      await sleep(0.2)
       // 获取合约地址
       if (contractObj.hasOwnProperty(name) === false) {
         alert(`${name}合约地址未设置`)
@@ -30,13 +32,13 @@ class Js_SDK {
       let contractAddress = contractObj[name];
       // 获取代理合约地址
       if (proxy) {
-        if (contractObj.hasOwnProperty('proxy') === false) {
+        if (contractObj.hasOwnProperty(proxy) === false) {
           alert(`代理合约地址未设置`)
           return
         }
-        contractAddress = contractObj['proxy']
+        contractAddress = contractObj[proxy]
       }
-      let abi = await require(`${root_path}/abi/${name}.json`)
+      let abi = await require(`/src/abi/${name}.json`)
       if (abi === undefined) {
         alert(`${name}合约的abi文件不存在`)
         return
@@ -71,12 +73,12 @@ class Js_SDK {
         }
         contractAddress = contractObj['proxy']
       }
-      let abi = await require(`${root_path}/abi/${name}.json`)
+      let abi = await require(`/src/abi/${name}.json`)
       if (abi === undefined) {
         alert(`${name}合约的abi文件不存在`)
         return
       }
-      const wallet = new (await require(`${root_path}/contract/${block_chain}/${name}.js`).default)()
+      const wallet = new (await require(`/src/contract/${block_chain}/${name}.js`).default)()
       return await wallet.setContract(name, contractAddress, abi)
       
     } catch (error) {

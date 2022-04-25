@@ -31,7 +31,7 @@ const tronClass = class Tron {
   /**
    * 设置合约
    * @param {*} name 逻辑合约名称
-   * @param {*} proxyAddress 代理合约地址
+   * @param {*} address 合约地址
    * @param {*} abi 逻辑合约ABI
    * @returns 
    */
@@ -48,7 +48,7 @@ const tronClass = class Tron {
     this.address = address
     /** .at绑定废弃，因为代理合约需要ABI */
     // this.contract = await tronweb.contract().at(address)
-    this.contract = await tronweb.contract(abi,proxyAddress)
+    this.contract = await tronweb.contract(abi,address)
     return this
   }
 
