@@ -11,8 +11,8 @@
     contract、abi、config 目录请配置在根目录/src
     三个文件夹可以去 https://github.com/jokerhaos/wallet_sdk 获取
 
-    contractAddress.json的key就是加载合约时用的参数
-    contractAddress.json的key又是abi的文件名
+    contractAddress.js的key就是加载合约时用的参数
+    contractAddress.js的key又是abi的文件名
 
     使用代理合约的话，newContract的时候设置第二个参数，参数名是contractAddress的key
 
@@ -70,10 +70,9 @@
 
     开发者新增新合约
 
-        1. abi目录放json文件
-        2. config/abiList.json 新增一条数据
-        3. config/contractAddress.json 写入合约地址
-        4. 你也可以写一个自己的contract.js 写到contract/链 然后继承tron.js or ethereum.js
-        5. 写自己的contract.js则使用 “getContract()” 对应的合约对象 
+        1. config/contractAddress.js 写入合约地址
+        2. abi目录放json文件
+        3. 你也可以写一个自己的contract.js 写到contract/链 然后继承tron.js or ethereum.js
+        4. 写自己的contract.js则使用 “getContract()” 对应的合约对象 
 
 ```
