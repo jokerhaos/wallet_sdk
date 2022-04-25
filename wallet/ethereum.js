@@ -261,7 +261,7 @@ const ethClass = class Eth {
    */
   async sendMethod(funName, feeLimit, callValue, ...arg) {
     const my_wallet_address = await this.getWalletAddress()
-    const gas = !feeLimit ? await estimateGas(funName, callValue, ...arg) : feeLimit
+    const gas = !feeLimit ? await this.estimateGas(funName, callValue, ...arg) : feeLimit
     console.log(gas)
     if (version === 0.2) {
       // 0.2版本
