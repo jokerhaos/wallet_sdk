@@ -84,7 +84,7 @@ export default {
   },
   async created() {
     console.log("加载中……");
-    this.objContract["testV1"] = await walletObj.newContract(
+    this.objContract["testV1"] = await walletObj.getContract(
       "testV1",
       "testProxy"
     );
@@ -98,10 +98,10 @@ export default {
   methods: {
     async SetUint256Param(){
       let param =  this.input1.split(',')
-      this.objContract['testV1'].sendMethod('SetUint256Param',0,0,param[0],parseInt(param[1]))
+      this.objContract['testV1'].SetUint256Param(param[0],parseInt(param[1]))
     },
     async GetUint256Param(){
-      this.result = await this.objContract['testV1'].callMethod('GetUint256Param',this.input2)
+      this.result = await this.objContract['testV1'].GetUint256Param(this.input2)
     },
     async SetUint256Param2(){
       let param =  this.param1.split(',')
