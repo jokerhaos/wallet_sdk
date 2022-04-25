@@ -14,6 +14,8 @@
     contractAddress.js的key就是加载合约时用的参数
     contractAddress.js的key又是abi的文件名
 
+    contractAddress.js 合约地址你可以写env配置，方便环境加载
+
     使用代理合约的话，newContract的时候设置第二个参数，参数名是contractAddress的key
 
 ```
