@@ -1,14 +1,10 @@
 const path = require('path');
 // 项目根目录
 const root_path = path.dirname(require.main.filename);
-// 加入ENV
-process.env.J_WALLET_SDK_ROOT_PATH = root_path
 // 链
 const block_chain = process.env.VUE_APP_BLOCKCHAIN || 'tron';
-// 环境
-const wallet_env = process.env.VUE_APP_WALLET_ENV || 'dev';
 // 合约地址
-const contractObj = require(`${root_path}/config/contractAddress.json`)[wallet_env][block_chain]
+const contractObj = require(`${root_path}/config/contractAddress.json`)[block_chain]
 
 class Js_SDK {
 

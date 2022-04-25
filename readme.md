@@ -2,13 +2,18 @@
 
     使用扩展，项目需要两个env变量
 
-        VUE_APP_WALLET_ENV = '环境' //默认dev dev or prod
         VUE_APP_BLOCKCHAIN='' //默认tron tron or ethereum or binance
 
         // 扩展会根据环境变量自动调用对应环境的钱包
 
         import walletObj from 'j_wallet_sdk'
 
+    contract abi config 这三个文件放在项目根目录，三个文件可以去 https://github.com/jokerhaos/wallet_sdk 获取
+
+```
+
+
+```
         /**
         * 新的合约对象
         * @param {*} name
