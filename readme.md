@@ -18,6 +18,8 @@
 
     使用代理合约的话，newContract的时候设置第二个参数，参数名是contractAddress的key
 
+    <<<<<<<<<<<<<<<<<<<<<< HelloWorld.vue 是使用例子
+
 ```
 
 
