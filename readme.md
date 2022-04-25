@@ -11,6 +11,11 @@
     contract、abi、config 目录请配置在根目录/src
     三个文件夹可以去 https://github.com/jokerhaos/wallet_sdk 获取
 
+    contractAddress.json的key就是加载合约时用的参数
+    contractAddress.json的key又是abi的文件名
+
+    使用代理合约的话，newContract的时候设置第二个参数，参数名是contractAddress的key
+
 ```
 
 
@@ -21,7 +26,7 @@
         * @param {*} proxy 是否使用代理合约，default:false
         * @returns {this} 返回一个新的合约对象
         */
-        const APENFT = await walletObj.newContract('apenft',true)
+        const APENFT = await walletObj.newContract('apenft','apenftProxy')
         // 或者使用
         const APENFT = await walletObj.getContract('apenft')
 
