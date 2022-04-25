@@ -150,7 +150,7 @@ const tronClass = class Tron {
    * @returns tx 交易单号
    */
   async sendMethod(funName, feeLimit, callValue, ...arg) {
-    const gas = !feeLimit ? await estimateGas(funName, callValue, ...arg) : feeLimit
+    const gas = !feeLimit ? await this.estimateGas(funName, callValue, ...arg) : feeLimit
     console.log(gas)
     return await this.contract[funName](...arg).send(
       {
