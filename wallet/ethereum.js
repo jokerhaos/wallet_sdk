@@ -293,4 +293,4 @@ const ethClass = class Eth {
   }
 }
 
-export default ethClass
+module.exports = ethClass

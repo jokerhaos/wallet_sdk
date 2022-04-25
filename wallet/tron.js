@@ -160,5 +160,4 @@ const tronClass = class Tron {
       })
   }
 }
-
-export default tronClass
+module.exports = tronClass
