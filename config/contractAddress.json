@@ -1,42 +1,17 @@
 {
     "dev": {
         "tron": {
-            "market": "TCDYUJnBpbM9UAUzJeTTNz4LFim8J7iMv4",
-            "core": "TDT1SyLgXXiuU3ankBt1KoqaPd9ZQeQoyd",
-            "apenft": "TMHNBwLeZevcgZ1Em1x5koUd9ZRL9DavyZ",
-            "win": "TS24cRWgd89WptHyqsQkoKkCiGyupXjk3z"
+            "testV1": "TQ5MoHNo5KhMMVcmTodQizEMykzRxBssXk",
+            "testV2": "TGSsF2hXTznaYEua6DMwjis9gcE9zAgVYP",
+            "proxyAdmin": "TFYmscuCnriiuWs4Jh1oGNydj8F57Bine2",
+            "proxy": "TUHgfvDLnMwU3Cvz6xdNQXsESaFMyTo2Cf"
         },
-        "ethereum": {
-            "market": "0x41cb926605a9be709d33cd8ae579cd3c7c569d16",
-            "core": "0xe841c8fdc1152d7531a0ac4684ca397f5bcaee39",
-            "apenft": "0x13ebc0a1fee2f7e5a1809712957229b70fd77bf2",
-            "win": "0xcda9b72f6b4561f62721187080bc790f4c8d4042"
-        },
-        "binance": {
-            "market": "0xd49d0da1fb942ecf2eb3354ac43243f7ac89d288",
-            "core": "0xad29ad8d34ec7cbd717bd11679d614eb99030cb7",
-            "apenft": "0x0073580275993bce7a61cb9952b7717ceb2ee72b",
-            "win": "0xc730f312ab4c566dce27aeaf20ceaa8e7bfc3cb2"
-        }
+        "ethereum": {},
+        "binance": {}
     },
     "prod": {
-        "tron": {
-            "market": "TRroN1acf1KUTUoBUKMLzfbUoXESBL5dJa",
-            "core": "THmGFax8tqkWcnmGcRb8ipyL9bzdAA8Svv",
-            "apenft": "TFczxzPhnThNSqr5by8tvxsdCFRRz6cPNq",
-            "win": "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7"
-        },
-        "ethereum": {
-            "market": "",
-            "core": "",
-            "apenft": "",
-            "win": ""
-        },
-        "binance": {
-            "market": "0x1b8759a781dedcd0b23c09fe889be88f5d938f70",
-            "core": "0xa27788319e0b3b3be267c1f002435acf047d9598",
-            "apenft": "0x1fc9004ec7e5722891f5f38bae7678efcb11d34d",
-            "win": "0xaef0d72a118ce24fee3cd1d43d383897d05b4e99"
-        }
+        "tron": {},
+        "ethereum": {},
+        "binance": {}
     }
 }

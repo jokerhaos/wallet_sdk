@@ -1,47 +1,52 @@
+const path = require('path');
+// 项目根目录
+const root_path = path.dirname(require.main.filename);
+// 加入ENV
+process.env.J_WALLET_SDK_ROOT_PATH = root_path
 // 链
 const block_chain = process.env.VUE_APP_BLOCKCHAIN || 'tron';
 // 环境
 const wallet_env = process.env.VUE_APP_WALLET_ENV || 'dev';
 // 合约地址
-const contractObj = require("./config/contractAddress.json")[wallet_env][block_chain]
-// abi
-const abiList = require("./config/abiList.json");
+const contractObj = require(`${root_path}/config/contractAddress.json`)[wallet_env][block_chain]
 
 class Js_SDK {
 
-  constructor(block_chain, contractObj) {
+  constructor() {
     this.block_chain = block_chain
     this.wallet = new (require(`./wallet/${block_chain}.js`).default)()
-    this.contractObj = contractObj
-    this.abiList = abiList
     this.defaultGas = this.wallet.defaultGas
-    this.contractPath = './contract'
-  }
-
-  /**
-   * 设置abiList and contractAddress and contractPath
-   * @param {*} abiList 配置查看./config/abiList.json
-   * @param {*} contractAddress 配置查看./config/contractAddress.json
-   * @param {*} contractPath contract目录地址 default ./contract，设置自己的目录遵循三个链的子目录，文件命名为abiList的key
-   * @returns {this}
-   */
-  async setConfig(abiList, contractAddress, contractPath) {
-    this.abiList = abiList
-    this.contractAddress = contractAddress[wallet_env][block_chain]
-    this.contractPath = contractPath
   }
 
   /**
    * 新的合约对象
    * @param {*} name
+   * @param {*} proxy 是否使用代理合约 default:false
    * @returns {this} 返回一个新的合约对象
    */
-  async newContract(name) {
+  async newContract(name, proxy = false) {
     try {
-      // require('./wallet/tron');
-      let abi = await require(`${this.abiList[name]}`)
+      // 获取合约地址
+      if (contractObj.hasOwnProperty(name) === false) {
+        alert(`${name}合约地址未设置`)
+        return
+      }
+      let contractAddress = contractObj[name];
+      // 获取代理合约地址
+      if (proxy) {
+        if (contractObj.hasOwnProperty('proxy') === false) {
+          alert(`代理合约地址未设置`)
+          return
+        }
+        contractAddress = contractObj['proxy']
+      }
+      let abi = await require(`${root_path}/abi/${name}.json`)
+      if (abi === undefined) {
+        alert(`${name}合约的abi文件不存在`)
+        return
+      }
       const wallet = new (await require(`./wallet/${block_chain}.js`).default)()
-      return await wallet.setContract(name, this.contractObj[name], abi)
+      return await wallet.setContract(name, contractAddress, abi)
     } catch (error) {
       console.log(error)
       return error
@@ -51,14 +56,33 @@ class Js_SDK {
   /**
    * 调用自己的contract合约对象
    * @param {*} name
+   * @param {*} proxy 是否使用代理合约 default:false
    * @returns {this} 返回一个新的合约对象
    */
-  async getContract(name) {
+  async getContract(name, proxy = false) {
     try {
-      let abi = await require(`${this.abiList[name]}`)
-      require(`./contract/ethereum/apenft.js`)
-      const wallet = new (await require(`${this.contractPath}/${block_chain}/${name}.js`).default)()
-      return await wallet.setContract(name, this.contractObj[name], abi)
+      // 获取合约地址
+      if (contractObj.hasOwnProperty(name) === false) {
+        alert(`${name}合约地址未设置`)
+        return
+      }
+      let contractAddress = contractObj[name];
+      // 获取代理合约地址
+      if (proxy) {
+        if (contractObj.hasOwnProperty('proxy') === false) {
+          alert(`代理合约地址未设置`)
+          return
+        }
+        contractAddress = contractObj['proxy']
+      }
+      let abi = await require(`${root_path}/abi/${name}.json`)
+      if (abi === undefined) {
+        alert(`${name}合约的abi文件不存在`)
+        return
+      }
+      const wallet = new (await require(`${root_path}/contract/${block_chain}/${name}.js`).default)()
+      return await wallet.setContract(name, contractAddress, abi)
+      
     } catch (error) {
       console.log(error)
       return error
@@ -99,4 +123,4 @@ class Js_SDK {
  * this.walletSC = await walletObj.newContract("SpaceCapsule");
  * 然后使用 this.walletSCF | this.walletSC 对象
  */
-export default new Js_SDK(block_chain, contractObj)
+export default new Js_SDK()

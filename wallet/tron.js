@@ -28,19 +28,27 @@ const tronClass = class Tron {
     return tronweb.address.fromHex(await this.callMethod('ownerOf', token_id))
   }
 
-  // 设置合约
-  async setContract(name, address, abiList = {}) {
+  /**
+   * 设置合约
+   * @param {*} name 逻辑合约名称
+   * @param {*} proxyAddress 代理合约地址
+   * @param {*} abi 逻辑合约ABI
+   * @returns 
+   */
+  async setContract(name, address, abi = {}) {
     console.log('name', name)
     console.log('address', address)
     if (!tronweb) {
       console.log('……')
       // 等待3s重新递归
       await sleep(3)
-      return await this.setContract(name, address, abiList)
+      return await this.setContract(name, address, abi)
     }
     this.name = name
     this.address = address
-    this.contract = await tronweb.contract().at(address)
+    /** .at绑定废弃，因为代理合约需要ABI */
+    // this.contract = await tronweb.contract().at(address)
+    this.contract = await tronweb.contract(abi,proxyAddress)
     return this
   }
 
@@ -92,13 +100,13 @@ const tronClass = class Tron {
   }
 
   /**
-       * 带签名的交易购买
-       * @param {*} nonce 随机数
-       * @param {*} signature 签名字符串
-       * @param {*} call_value 购买金额
-       * @param {*} num 数量
-       * @returns
-       */
+   * 带签名的交易购买
+   * @param {*} nonce 随机数
+   * @param {*} signature 签名字符串
+   * @param {*} call_value 购买金额
+   * @param {*} num 数量
+   * @returns
+   */
   async mint(token_id, qu, signature, nonce) {
     return await this.sendMethod('mintBySignature', 1e8, 0, ...[token_id, qu, signature, nonce])
   }
@@ -123,7 +131,7 @@ const tronClass = class Tron {
    * @param  {...any} arg 参数
    * @return int
    */
-   async estimateGas(funName, callValue, ...arg) {
+  async estimateGas(funName, callValue, ...arg) {
     // 最大的来吧~
     return 4e8
   }

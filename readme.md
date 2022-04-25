@@ -9,8 +9,13 @@
 
         import walletObj from 'j_wallet_sdk'
 
-        // 加载合约
-        const APENFT = await walletObj.newContract('apenft')
+        /**
+        * 新的合约对象
+        * @param {*} name
+        * @param {*} proxy 是否使用代理合约，default:false
+        * @returns {this} 返回一个新的合约对象
+        */
+        const APENFT = await walletObj.newContract('apenft',true)
         // 或者使用
         const APENFT = await walletObj.getContract('apenft')
 
