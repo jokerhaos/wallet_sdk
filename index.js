@@ -5,7 +5,7 @@ const root_path = path.join(__dirname, 'src')
 // 链
 const block_chain = process.env.VUE_APP_BLOCKCHAIN || 'tron';
 // 合约地址
-const contractObj = require(`/src/config/contractAddress.js`)[block_chain]
+const contractObj = require(`/src/config/contractAddress.js`)[block_chain] || {};
 
 class Js_SDK {
 
@@ -13,6 +13,23 @@ class Js_SDK {
     this.block_chain = block_chain
     this.wallet = new (require(`./wallet/${block_chain}.js`))()
     this.defaultGas = this.wallet.defaultGas
+  }
+
+  /**
+   * 使用abi加载合约
+   * @param {*} abi abi地址
+   * @param {*} address 合约地址
+   * @returns 
+   */
+  async contract(abi, address) {
+    try {
+      await sleep(0.2)
+      const wallet = new (await require(`./wallet/${block_chain}.js`))()
+      return await wallet.setContract('', address, abi)
+    } catch (error) {
+      console.log(error)
+      return error
+    }
   }
 
   /**
@@ -80,7 +97,7 @@ class Js_SDK {
       }
       const wallet = new (await require(`/src/contract/${block_chain}/${name}.js`))()
       return await wallet.setContract(name, contractAddress, abi)
-      
+
     } catch (error) {
       console.log(error)
       return error

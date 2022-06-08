@@ -33,6 +33,8 @@
         const APENFT = await walletObj.newContract('apenft','apenftProxy')
         // 或者使用
         const APENFT = await walletObj.getContract('apenft')
+        // 或者使用
+        const APENFT = await walletObj.contract(abi,合约地址)
 
         // 转账
         const tx = APPNFT.transfer('0x',100)
