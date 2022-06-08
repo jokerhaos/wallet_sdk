@@ -5,7 +5,11 @@ const root_path = path.join(__dirname, 'src')
 // 链
 const block_chain = process.env.VUE_APP_BLOCKCHAIN || 'tron';
 // 合约地址
-const contractObj = require(`/src/config/contractAddress.js`)[block_chain] || {};
+var contractObj = {};
+try {
+  contractObj = require(`/src/config/contractAddress.js`)[block_chain];
+} catch (error) {
+}
 
 class Js_SDK {
 
