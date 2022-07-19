@@ -208,4 +208,4 @@
 // export default ethClass
 const ethClass = require('./ethereum')
 
-export default ethClass
+module.exports = ethClass
